@@ -8,7 +8,7 @@
 
 ### 0x1 环境介绍
 
-备份时需要用到的工具：uredis-redis-port
+备份时需要用到的工具：**uredis-redis-port**
 
 
 机房 | 版本 | 网络环境
@@ -41,9 +41,36 @@ PS：由于使用的是云商提供的Redis数据库，并无外网权限，所�
 ```
 wget http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/66006/cn_zh/1531121747155/redis-port%282%29?spm=a2c4e.11153940.blogcont394417.12.6e0e90c8Dbhgw3
 ```
-文档中名字：--redis-port-aliyun--
+文档中名字：**redis-port-aliyun**
 
---注意此工具
+注意此工具只适合导入Redis 3.0版本以下的数据
+>官方地址:https://yq.aliyun.com/articles/394417
+
+```
+./redis-port  restore  
+  --input=x/dump.rdb  --target=dst_host:dst_port   
+  --auth=dst_password  [--filterkey="str1|str2|str3"]
+  [--targetdb=DB] [--rewrite] [--bigkeysize=SIZE]
+  [--logfile=REDISPORT.LOG]
+
+  参数说明：
+
+    x/dump.rdb : 云redis备份集的dump文件路径
+
+    dst_host : 自建redis域名（或者ip）
+
+    dst_port : 自建redis端口
+
+    dst_password : 自建redis密码
+
+    str1|str2|str3 : 过滤具有str1或str2或str3的key
+
+    DB : 欲同步入自建redis的db
+
+    rewrite : 覆盖已经写入的key
+
+     bigkeysize=SIZE : 当写入的value大于SIZE时，走大key写入模式
+```
 
 
 
